@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { Logo } from '../components';
+import { Logo, FormRow, Alert } from '../components';
 import Wrapper from '../assets/wrappers/RegisterPage';
 
 const initalState = {
   name: '',
   email: '',
   password: '',
+  showAlert: true,
   isMember: true,
+};
+
+const handleChange = (e) => {
+  console.log(e);
+};
+const handleSubmit = (e) => {
+  e.preventDefault();
+  console.log(e);
 };
 
 const Register = () => {
@@ -16,21 +25,30 @@ const Register = () => {
       <form className='form' onSubmit={handleSubmit}>
         <Logo />
         <h3>Login</h3>
-        {/* name field */}
+        {values.showAlert && <Alert />}
         <div className='form-row'>
-          <label htmlFor='name' className='form-label'>
-            {' '}
-            name
-          </label>
-          <input
+          <FormRow
             type='text'
-            value={values.name}
             name='name'
-            onChange={handleChange}
-            className='form-input'
+            value={values.name}
+            handleChange={handleChange}
+          />
+          <FormRow
+            type='text'
+            name='email'
+            value={values.email}
+            handleChange={handleChange}
+          />
+          <FormRow
+            type='text'
+            name='password'
+            value={values.password}
+            handleChange={handleChange}
           />
         </div>
-        <button className='btn btn-block'></button>
+        <button type='submit' className='btn btn-block'>
+          submit
+        </button>
       </form>
     </Wrapper>
   );
