@@ -30,32 +30,36 @@ const Register = () => {
         <Logo />
         <h3>{values.isMember ? 'Login' : 'Register'}</h3>
         {values.showAlert && <Alert />}
-        <div className='form-row'>
+
+        {!values.isMember && (
           <FormRow
             type='text'
             name='name'
             value={values.name}
             handleChange={handleChange}
           />
-          <FormRow
-            type='text'
-            name='email'
-            value={values.email}
-            handleChange={handleChange}
-          />
-          <FormRow
-            type='text'
-            name='password'
-            value={values.password}
-            handleChange={handleChange}
-          />
-        </div>
+        )}
+
+        <FormRow
+          type='text'
+          name='email'
+          value={values.email}
+          handleChange={handleChange}
+        />
+        <FormRow
+          type='text'
+          name='password'
+          value={values.password}
+          handleChange={handleChange}
+        />
+
         <button type='submit' className='btn btn-block'>
           submit
         </button>
         <p>
+          {values.isMember ? 'Not a member yet?' : 'Already a member?'}
           <button type='button' onClick={toggleMember} className='member-btn'>
-            Register
+            {values.isMember ? 'Register' : 'Login'}
           </button>
         </p>
       </form>
