@@ -12,7 +12,7 @@ const initialState = {
 
 const Register = () => {
   const [values, setValues] = useState(initialState);
-  const { isLoading, showAlert, displayAlert } = useAppContext();
+  const { isLoading, showAlert, displayAlert, clearAlert } = useAppContext();
 
   const toggleMember = () => {
     setValues({ ...values, isMember: !values.isMember });
@@ -28,7 +28,7 @@ const Register = () => {
       displayAlert();
       return;
     }
-    console.log(values);
+    clearAlert();
   };
 
   return (
