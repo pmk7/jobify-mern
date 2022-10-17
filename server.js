@@ -1,15 +1,29 @@
-const express = require('express');
-const { default: notFoundMiddleware } = require('./middleware/not-found');
-const app = express();
-const port = process.env.PORT || 8000;
-
+import express from 'express';
 // middleware
-notFoundMiddleware;
+import notFoundMiddleware from './middleware/not-found.js';
+import errorHandlerMiddleware from './middleware/error-handler.js';
+// middleware
+import dotenv from 'dotenv';
+import connectDB from './db/connect.js';
+dotenv.config();
+
+const app = express();
 
 app.get('/', (req, res) => {
   res.send('hi');
 });
 
 app.use(notFoundMiddleware);
+app.use(errorHandlerMiddleware);
+const port = process.env.PORT || 8000;
 
-app.listen(port, () => console.log(`Server is listening on port ${port}`));
+const start = async () => {
+  try {
+    await connectDB(process.env.MONGO_URL);
+    app.listen(port, () => console.log(`Server is listening on port ${port}`));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+start();
