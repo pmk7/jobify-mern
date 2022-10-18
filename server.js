@@ -4,14 +4,22 @@ import notFoundMiddleware from './middleware/not-found.js';
 import errorHandlerMiddleware from './middleware/error-handler.js';
 // middleware
 import dotenv from 'dotenv';
+
+// db and authenticatedUser
 import connectDB from './db/connect.js';
 dotenv.config();
 
+// routers
+import authRouter from './routes/authRoutes.js';
 const app = express();
+
+app.use(express.json());
 
 app.get('/', (req, res) => {
   res.send('hi');
 });
+
+app.use('/api/v1/auth', authRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
