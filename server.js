@@ -11,6 +11,7 @@ dotenv.config();
 
 // routers
 import authRouter from './routes/authRoutes.js';
+import jobsRoutes from './routes/jobsRoutes.js';
 const app = express();
 
 app.use(express.json());
@@ -20,6 +21,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/jobs', jobsRoutes);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
