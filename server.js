@@ -8,6 +8,7 @@ import dotenv from 'dotenv';
 // db and authenticatedUser
 import connectDB from './db/connect.js';
 dotenv.config();
+import 'express-async-errors';
 
 // routers
 import authRouter from './routes/authRoutes.js';
