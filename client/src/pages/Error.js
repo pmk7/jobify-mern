@@ -5,7 +5,7 @@ import Wrapper from '../assets/wrappers/ErrorPage';
 
 const Error = () => {
   return (
-    <Wrapper classname='full-page'>
+    <Wrapper className='full-page'>
       <div>
         <img src={img} alt='not found' />
         <h1>oops</h1>
