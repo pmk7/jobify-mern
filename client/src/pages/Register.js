@@ -4,7 +4,7 @@ import Wrapper from '../assets/wrappers/RegisterPage';
 import { useAppContext } from '../context/appContext';
 
 const initialState = {
-  name: '',
+  userName: '',
   email: '',
   password: '',
   isMember: true,
@@ -12,7 +12,8 @@ const initialState = {
 
 const Register = () => {
   const [values, setValues] = useState(initialState);
-  const { isLoading, showAlert, displayAlert, clearAlert } = useAppContext();
+  const { isLoading, showAlert, displayAlert, clearAlert, registerUser } =
+    useAppContext();
 
   const toggleMember = () => {
     setValues({ ...values, isMember: !values.isMember });
@@ -23,12 +24,17 @@ const Register = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const { name, email, password, isMember } = values;
-    if (!email || !password || (!isMember && !name)) {
+    const { userName, email, password, isMember } = values;
+    if (!email || !password || (!isMember && !userName)) {
       displayAlert();
       return;
     }
-    clearAlert();
+    const currentUser = { userName, email, password };
+    if (isMember) {
+      console.log('already member');
+    } else {
+      registerUser(currentUser);
+    }
   };
 
   return (
@@ -42,7 +48,7 @@ const Register = () => {
           <FormRow
             type='text'
             name='name'
-            value={values.name}
+            value={values.userName}
             handleChange={handleChange}
           />
         )}
@@ -60,7 +66,7 @@ const Register = () => {
           handleChange={handleChange}
         />
 
-        <button type='submit' className='btn btn-block'>
+        <button type='submit' className='btn btn-block' disabled={isLoading}>
           submit
         </button>
         <p>
