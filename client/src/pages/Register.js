@@ -4,7 +4,7 @@ import Wrapper from '../assets/wrappers/RegisterPage';
 import { useAppContext } from '../context/appContext';
 
 const initialState = {
-  userName: '',
+  name: '',
   email: '',
   password: '',
   isMember: true,
@@ -24,12 +24,12 @@ const Register = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const { userName, email, password, isMember } = values;
-    if (!email || !password || (!isMember && !userName)) {
+    const { name, email, password, isMember } = values;
+    if (!email || !password || (!isMember && !name)) {
       displayAlert();
       return;
     }
-    const currentUser = { userName, email, password };
+    const currentUser = { name, email, password };
     if (isMember) {
       console.log('already member');
     } else {
@@ -48,7 +48,7 @@ const Register = () => {
           <FormRow
             type='text'
             name='name'
-            value={values.userName}
+            value={values.name}
             handleChange={handleChange}
           />
         )}
