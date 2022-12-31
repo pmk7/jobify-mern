@@ -6,6 +6,7 @@ import {
   CLEAR_ALERT,
   REGISTER_USER_BEGIN,
   REGISTER_USER_SUCCESS,
+  REGISTER_USER_ERROR,
   SUCCESS,
   ERROR,
 } from '../actions';
@@ -54,10 +55,11 @@ const AppProvider = ({ children }) => {
     } catch (error) {
       console.log(error.response);
       dispatch({
-        type: REGISTER_USER_BEGIN,
+        type: REGISTER_USER_ERROR,
         payload: { msg: error.response.data.msg },
       });
     }
+    clearAlert();
   };
 
   return (
