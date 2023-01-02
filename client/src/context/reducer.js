@@ -4,8 +4,6 @@ import {
   REGISTER_USER_BEGIN,
   REGISTER_USER_SUCCESS,
   REGISTER_USER_ERROR,
-  SUCCESS,
-  ERROR,
 } from '../actions.js';
 
 const reducer = (state, action) => {

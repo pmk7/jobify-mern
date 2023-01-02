@@ -33,6 +33,7 @@ const Register = () => {
     }
     const currentUser = { name, email, password };
     if (isMember) {
+      console.log(isMember);
       console.log('already member');
     } else {
       registerUser(currentUser);

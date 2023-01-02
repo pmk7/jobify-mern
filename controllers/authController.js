@@ -1,6 +1,7 @@
 import User from '../models/User.js';
 import { StatusCodes } from 'http-status-codes';
 import { BadRequestError } from '../errors/index.js';
+import { UnauthenticatedError } from '../errors/index.js';
 
 const register = async (req, res) => {
   const { name, email, password } = req.body;
@@ -39,7 +40,9 @@ const login = async (req, res) => {
   if (!isPasswordCorrect) {
     throw new UnauthenticatedError('Invalid credentials');
   }
-  res.send('login user ');
+  const token = user.createJWT();
+  user.password = undefined;
+  res.status(StatusCodes.OK).json({ user, token, location: user.location });
 };
 const updateUser = async (req, res) => {
   res.send('updateUser');
