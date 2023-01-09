@@ -4,7 +4,8 @@ import {
   SETUP_USER_BEGIN,
   SETUP_USER_SUCCESS,
   SETUP_USER_ERROR,
-} from '../actions.js';
+  TOGGLE_SIDEBAR,
+} from './actions.js';
 
 const reducer = (state, action) => {
   if (action.type === DISPLAY_ALERT) {
@@ -30,7 +31,6 @@ const reducer = (state, action) => {
   }
 
   if (action.type === SETUP_USER_SUCCESS) {
-    console.log(SETUP_USER_BEGIN);
     return {
       ...state,
       isLoading: false,
@@ -52,6 +52,10 @@ const reducer = (state, action) => {
       alertType: 'danger',
       alertText: action.payload.msg,
     };
+  }
+
+  if (action.type === TOGGLE_SIDEBAR) {
+    return { ...state, showSidebar: !state.showSidebar };
   }
   throw new Error(`no such action: ${action.type}`);
 };

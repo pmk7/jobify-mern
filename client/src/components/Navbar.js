@@ -5,13 +5,11 @@ import { useAppContext } from '../context/appContext';
 import Logo from './Logo';
 
 const Navbar = () => {
+  const { toggleSidebar } = useAppContext();
   return (
     <Wrapper>
       <div className='nav-center'>
-        <button
-          className='toggle-btn'
-          onClick={() => console.log('toggle sidebar')}
-        >
+        <button type='button' className='toggle-btn' onClick={toggleSidebar}>
           <FaAlignLeft />
         </button>
         <div>
@@ -19,13 +17,18 @@ const Navbar = () => {
           <h3 className='logo-text'>dashboard</h3>
         </div>
         <div className='btn-container'>
-          <button className='btn' onClick={() => console.log('show logout')}>
+          <button
+            type='button'
+            className='btn'
+            onClick={() => console.log('show/hide dropdown')}
+          >
             <FaUserCircle />
             phil
             <FaCaretDown />
           </button>
           <div className='dropdown show-dropdown'>
             <button
+              type='button'
               className='dropdown-btn'
               onClick={() => console.log('logout user')}
             >
